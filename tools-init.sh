@@ -91,7 +91,7 @@ LTS_VER="v15.5.0"
 nvm use ${LTS_VER} &> /dev/null
 if (($? != 0)); then
     echo "Installing node version ${LTS_VER}"
-    nvm install --lts &> /dev/null
+    nvm install ${LTS_VER} &> /dev/null
 fi
 nvm alias default $LTS_VER &> /dev/null
 echo "Using node version:" $(node --version)

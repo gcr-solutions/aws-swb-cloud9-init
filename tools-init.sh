@@ -44,8 +44,9 @@ export PACKER_VER=1.7.2
 #     git clone https://github.com/awslabs/service-workbench-on-aws.git &>/dev/null
 # fi
 
+cd ~/environment
 git clone https://github.com/gcr-solutions/service-workbench-on-aws.git
-cd ~/environment/service-workbench-on-aws
+cd service-workbench-on-aws
 git checkout hongkong-fix
 
 cd $cwd
@@ -86,7 +87,7 @@ else
     echo "nvm version ${nvm_ver} is installed"
 fi
 
-LTS_VER=$(nvm version-remote --lts)
+LTS_VER="v15.5.0"
 nvm use ${LTS_VER} &> /dev/null
 if (($? != 0)); then
     echo "Installing node version ${LTS_VER}"
@@ -129,7 +130,7 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
-source ~/.bashrc 
+source ~/.bashrc
 echo ""
 echo "Your AWS Cloud9 Environment is ready to use. "
 echo "-------------------------------------------------------------------------"

@@ -26,23 +26,28 @@ aws configure set default.region ${AWS_REGION}
 aws configure get default.region
 
 export NVM_VER=$(curl --silent "https://github.com/nvm-sh/nvm/releases/latest" | sed 's#.*tag/\(.*\)\".*#\1#') #v.0.38.0
-export SWB_VER=$(curl --silent "https://github.com/awslabs/service-workbench-on-aws/releases/latest" | sed 's#.*tag/\(.*\)\".*#\1#') #v.3.1.0
+# export SWB_VER=$(curl --silent "https://github.com/awslabs/service-workbench-on-aws/releases/latest" | sed 's#.*tag/\(.*\)\".*#\1#') #v.3.1.0
 export PACKER_VER=1.7.2
 
 # Ensure SWB code exists.  Assume it's the latest version. ------------
-SWB_DIR=~/environment/service-workbench-on-aws
-if [ -d $SWB_DIR ]; then
-    cd $SWB_DIR
-    CURRENT_VER=$(git describe --tags --abbrev=0)
-    echo "SWB code ${CURRENT_VER} already installed"
-    if [ ! $CURRENT_VER == $SWB_VER ]; then
-	echo "NOTE: Current latest version is $SWB_VER; `git pull` to update"
-    fi
-else
-    echo "Cloning SWB Repo ${SWB_VER} from GitHub into ~/environment"
-    cd ~/environment
-    git clone https://github.com/awslabs/service-workbench-on-aws.git &>/dev/null
-fi
+# SWB_DIR=~/environment/service-workbench-on-aws
+# if [ -d $SWB_DIR ]; then
+#     cd $SWB_DIR
+#     CURRENT_VER=$(git describe --tags --abbrev=0)
+#     echo "SWB code ${CURRENT_VER} already installed"
+#     if [ ! $CURRENT_VER == $SWB_VER ]; then
+# 	echo "NOTE: Current latest version is $SWB_VER; `git pull` to update"
+#     fi
+# else
+#     echo "Cloning SWB Repo ${SWB_VER} from GitHub into ~/environment"
+#     cd ~/environment
+#     git clone https://github.com/awslabs/service-workbench-on-aws.git &>/dev/null
+# fi
+
+git clone https://github.com/gcr-solutions/service-workbench-on-aws.git
+cd ~/environment/service-workbench-on-aws
+git checkout hongkong-fix
+
 cd $cwd
 
 DEPENDENCIES=(golang jq)
